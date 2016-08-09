@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MTG Card Search</title>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href='css/style.css' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <header>
+  </header>
+  <main>
+    <form method='GET' id='card-form'>
+      <fieldset>
+        <ul class='colors-list'>
+          <input type='checkbox' name='color' value='White' data-color='white'>White
+          <input type='checkbox' name='color' value='Blue'>Blue
+          <input type='checkbox' name='color' value='Black'>Black
+          <input type='checkbox' name='color' value='Red'>Red
+          <input type='checkbox' name='color' value='Green'>Green
+        </ul>
+        <ul class='rarity-list'>
+          <input type='checkbox' name='rarity' value='Mythic Rare'>Mythic Rare
+          <input type='checkbox' name='rarity' value='Rare'>Rare
+          <input type='checkbox' name='rarity' value='Uncommon'>Uncommon
+          <input type='checkbox' name='rarity' value='Common'>Common
+        </ul>
+        <input id='search-submit' type='submit' value='Search'>
+      </fieldset>
+    </form>
+    <ul class='card-results'>
+      <li>test text</li>
+    </ul>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous">
+  </script>
+  <script>
+      $('#search-submit').on('submit', 'button', function(event){
+        event.preventDefault();
+        $.ajax({
+          type: 'GET',
+          url: 'json/EMA-x.json',
+          dataType: 'json',
+          success: function(result) {
+            console.log('this happened');
+          }
+        });
+      });
+      // testing getting form elements
+    var x = $('#card-form');
+    console.log(x);
+  </script>
+</body>
+</html>
