@@ -13,11 +13,11 @@
     <form method='GET' id='card-form'>
       <fieldset>
         <ul class='colors-list'>
-          <input type='checkbox' name='color' value='White' data-color='white'>White
-          <input type='checkbox' name='color' value='Blue'>Blue
-          <input type='checkbox' name='color' value='Black'>Black
-          <input type='checkbox' name='color' value='Red'>Red
-          <input type='checkbox' name='color' value='Green'>Green
+          <input type='checkbox' name='color' value='White' class='white'>White
+          <input type='checkbox' name='color' value='Blue' class='blue'>Blue
+          <input type='checkbox' name='color' value='Black' class='black'>Black
+          <input type='checkbox' name='color' value='Red' class='red'>Red
+          <input type='checkbox' name='color' value='Green' class='green'>Green
         </ul>
         <ul class='rarity-list'>
           <input type='checkbox' name='rarity' value='Mythic Rare'>Mythic Rare
@@ -28,27 +28,12 @@
         <input id='search-submit' type='submit' value='Search'>
       </fieldset>
     </form>
-    <ul class='card-results'>
+    <ul id='card-results'>
       <li>test text</li>
     </ul>
   </main>
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous">
   </script>
-  <script>
-      $('#search-submit').on('submit', 'button', function(event){
-        event.preventDefault();
-        $.ajax({
-          type: 'GET',
-          url: 'json/EMA-x.json',
-          dataType: 'json',
-          success: function(result) {
-            console.log('this happened');
-          }
-        });
-      });
-      // testing getting form elements
-    var x = $('#card-form');
-    console.log(x);
-  </script>
+  <script type="text/javascript" src="js/search.js"></script>
 </body>
 </html>
