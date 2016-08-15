@@ -1,7 +1,9 @@
 var finishedSearch = $('#card-results');
+var cardName = $('[name="cardname"]');
 var cardItem = $('<li>');
 var resultsArr = [];
 var resultObj;
+var cardImg = $('<img>');
 
 var whiteSearch = $('.white');
 var blueSearch = $('.blue');
@@ -14,17 +16,14 @@ var rareSearch = $('.rare');
 var uncommonSearch = $('.uncommon');
 var commonSearch = $('.common');
 
-// Retrieves img. Functional but currently being refused connection
-// var cardImg = $('<img>');
-// cardImg.attr('src', 'http://magiccards.info/scans/en/' + card.printings[0].toLowerCase() + '/' + card.number + '.jpg');
-// cardItem.append(cardImg);
-
-$('#search-submit').on('click', function(event){
+$('#search-submit').on('click', function(event) {
   event.preventDefault();
   for(var i in resultObj.cards) {
     var card = resultObj.cards[i];
-    if (whiteSearch.prop('checked') && (card.colors.indexOf('White') !== -1) && (resultsArr.indexOf(card) == -1)) {
+    if (card.name.toUpperCase().includes(cardName.prop('value').toUpperCase()) && cardName.prop('value') !== ('')) {
       resultsArr.push(card);
+    } else if (whiteSearch.prop('checked') && (card.colors.indexOf('White') !== -1) && (resultsArr.indexOf(card) == -1)) {
+        resultsArr.push(card);
     } else if (blueSearch.prop('checked') && (card.colors.indexOf('Blue') !== -1) && (resultsArr.indexOf(card) == -1)) {
         resultsArr.push(card);
     } else if (blackSearch.prop('checked') && (card.colors.indexOf('Black') !== -1) && (resultsArr.indexOf(card) == -1)) {
@@ -46,11 +45,17 @@ $('#search-submit').on('click', function(event){
   postResult(resultsArr);
 });
 
+$('#form-reset').on('click', function(event) {
+  finishedSearch.empty();
+  resultsArr = [];
+});
+
 function postResult(cardPost) {
   for (var i in cardPost) {
     var cardData = cardPost[i];
     finishedSearch.hide();
     cardItem.append('<h2>' + cardData.name + '</h2>' + '<p>' + cardData.manaCost + '<br>' + cardData.type + '<br>' + cardData.rarity + '<br>' + cardData.text + '</p>');
+    // Retrieves image, disabled to prevent rate limiting. Look into on click for card name
     // var cardImg = $('<img>');
     // cardImg.attr('src', 'http://magiccards.info/scans/en/' + cardData.printings[0].toLowerCase() + '/' + cardData.number + '.jpg');
     // cardItem.append(cardImg);

@@ -13,6 +13,8 @@
     <form method='GET' id='card-form'>
       <fieldset>
         <legend>Magic: the Gathering Card Search</legend>
+        Card Name<br>
+        <input type='text' name='cardname' class='card-name'>
         <ul class='colors-list'>
           <input type='checkbox' name='color' value='White' class='white'>White
           <input type='checkbox' name='color' value='Blue' class='blue'>Blue
@@ -26,7 +28,8 @@
           <input type='checkbox' name='rarity' value='Uncommon' class='uncommon'>Uncommon
           <input type='checkbox' name='rarity' value='Common' class='common'>Common
         </ul>
-        <input id='search-submit' type='submit' value='Search'>
+        <button id='search-submit' type='submit' value='Search'>Search</button>
+        <button id='form-reset' type='reset' value='Reset'>Reset</button>
       </fieldset>
     </form>
     <ul id='card-results'>
