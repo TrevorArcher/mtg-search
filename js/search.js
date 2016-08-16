@@ -1,6 +1,5 @@
 var finishedSearch = $('#card-results');
 var cardName = $('[name="cardname"]');
-var cardItem = $('<li>');
 var resultsArr = [];
 var resultObj;
 var cardImg = $('<img>');
@@ -45,15 +44,19 @@ $('#search-submit').on('click', function(event) {
   postResult(resultsArr);
 });
 
-$('#form-reset').on('click', function(event) {
-  finishedSearch.empty();
+$('#form-reset').on('click', function() {
+  finishedSearch.children().empty();
   resultsArr = [];
 });
 
 function postResult(cardPost) {
+  finishedSearch.children().empty();
+  resultsArr = [];
   for (var i in cardPost) {
     var cardData = cardPost[i];
+    var cardItem = $('<li>');
     finishedSearch.hide();
+    finishedSearch.append(cardItem);
     cardItem.append('<h2>' + cardData.name + '</h2>' + '<p>' + cardData.manaCost + '<br>' + cardData.type + '<br>' + cardData.rarity + '<br>' + cardData.text + '</p>');
     // Retrieves image, disabled to prevent rate limiting. Look into on click for card name
     // var cardImg = $('<img>');
