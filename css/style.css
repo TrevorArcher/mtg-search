@@ -6,3 +6,12 @@
 li {
   margin: 1rem 0;
 }
+
+.search-params {
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.colors-list, .rarity-list  {
+  padding-left: 0;
+}

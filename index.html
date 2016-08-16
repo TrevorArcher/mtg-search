@@ -15,19 +15,27 @@
         <legend>Magic: the Gathering Card Search</legend>
         Card Name<br>
         <input type='text' name='cardname' class='card-name'>
-        <ul class='colors-list'>
-          <input type='checkbox' name='color' value='White' class='white'>White
-          <input type='checkbox' name='color' value='Blue' class='blue'>Blue
-          <input type='checkbox' name='color' value='Black' class='black'>Black
-          <input type='checkbox' name='color' value='Red' class='red'>Red
-          <input type='checkbox' name='color' value='Green' class='green'>Green
-        </ul>
-        <ul class='rarity-list'>
-          <input type='checkbox' name='rarity' value='Mythic Rare' class='mythic'>Mythic Rare
-          <input type='checkbox' name='rarity' value='Rare' class='rare'>Rare
-          <input type='checkbox' name='rarity' value='Uncommon' class='uncommon'>Uncommon
-          <input type='checkbox' name='rarity' value='Common' class='common'>Common
-        </ul>
+        <div class='search-params'>
+          <ul class='colors-list'>
+            <input type='checkbox' name='color' value='White' class='white'>White
+            <input type='checkbox' name='color' value='Blue' class='blue'>Blue
+            <input type='checkbox' name='color' value='Black' class='black'>Black
+            <input type='checkbox' name='color' value='Red' class='red'>Red
+            <input type='checkbox' name='color' value='Green' class='green'>Green
+          </ul>
+          <ul class='color-params'>
+            <!-- <input type='checkbox' name='color' value='Exclude' class='exclude'>Exclude Unselected -->
+            <input type='checkbox' name='color' value='Multi' class='multi'>Only Multicolor
+          </ul>
+        </div>
+        <div class='search-params'>
+          <ul class='rarity-list'>
+            <input type='checkbox' name='rarity' value='Mythic Rare' class='mythic'>Mythic Rare
+            <input type='checkbox' name='rarity' value='Rare' class='rare'>Rare
+            <input type='checkbox' name='rarity' value='Uncommon' class='uncommon'>Uncommon
+            <input type='checkbox' name='rarity' value='Common' class='common'>Common
+          </ul>
+        </div>
         <button id='search-submit' type='submit' value='Search'>Search</button>
         <button id='form-reset' type='reset' value='Reset'>Reset</button>
       </fieldset>

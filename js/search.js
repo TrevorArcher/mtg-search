@@ -9,6 +9,7 @@ var blueSearch = $('.blue');
 var blackSearch = $('.black');
 var redSearch = $('.red');
 var greenSearch = $('.green');
+var multiSearch = $('.multi');
 
 var mythicSearch = $('.mythic');
 var rareSearch = $('.rare');
@@ -17,41 +18,47 @@ var commonSearch = $('.common');
 
 $('#search-submit').on('click', function(event) {
   event.preventDefault();
-  for(var i in resultObj.cards) {
-    var card = resultObj.cards[i];
-    if (card.name.toUpperCase().includes(cardName.prop('value').toUpperCase()) && cardName.prop('value') !== ('')) {
-      resultsArr.push(card);
-    } else if (whiteSearch.prop('checked') && (card.colors.indexOf('White') !== -1) && (resultsArr.indexOf(card) == -1)) {
+  console.log(multiSearch);
+  if (multiSearch.prop('checked')) {
+    console.log('some stuff');
+  } else for(var i in resultObj.cards) {
+      var card = resultObj.cards[i];
+      if (card.name.toUpperCase().includes(cardName.prop('value').toUpperCase()) && cardName.prop('value') !== ('')) {
         resultsArr.push(card);
-    } else if (blueSearch.prop('checked') && (card.colors.indexOf('Blue') !== -1) && (resultsArr.indexOf(card) == -1)) {
+      } else if (whiteSearch.prop('checked') && (card.colors.indexOf('White') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (blueSearch.prop('checked') && (card.colors.indexOf('Blue') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (blackSearch.prop('checked') && (card.colors.indexOf('Black') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (redSearch.prop('checked') && (card.colors.indexOf('Red') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (greenSearch.prop('checked') && (card.colors.indexOf('Green') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (mythicSearch.prop('checked') && (card.rarity.indexOf('Mythic Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
         resultsArr.push(card);
-    } else if (blackSearch.prop('checked') && (card.colors.indexOf('Black') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
-    } else if (redSearch.prop('checked') && (card.colors.indexOf('Red') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
-    } else if (greenSearch.prop('checked') && (card.colors.indexOf('Green') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
-    } else if (mythicSearch.prop('checked') && (card.rarity.indexOf('Mythic Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
-      resultsArr.push(card);
-    } else if (rareSearch.prop('checked') && (card.rarity.indexOf('Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
-    } else if (uncommonSearch.prop('checked') && (card.rarity.indexOf('Uncommon') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
-    } else if (commonSearch.prop('checked') && (card.rarity.indexOf('Common') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
+      } else if (rareSearch.prop('checked') && (card.rarity.indexOf('Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (uncommonSearch.prop('checked') && (card.rarity.indexOf('Uncommon') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      } else if (commonSearch.prop('checked') && (card.rarity.indexOf('Common') !== -1) && (resultsArr.indexOf(card) == -1)) {
+          resultsArr.push(card);
+      }
     }
-  }
   postResult(resultsArr);
 });
 
-$('#form-reset').on('click', function() {
+function clearResults() {
   finishedSearch.children().empty();
   resultsArr = [];
+}
+
+$('#form-reset').on('click', function() {
+  clearResults();
 });
 
 function postResult(cardPost) {
-  finishedSearch.children().empty();
-  resultsArr = [];
+  clearResults();
   for (var i in cardPost) {
     var cardData = cardPost[i];
     var cardItem = $('<li>');
