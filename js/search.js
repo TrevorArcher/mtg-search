@@ -18,9 +18,12 @@ var commonSearch = $('.common');
 
 $('#search-submit').on('click', function(event) {
   event.preventDefault();
-  console.log(multiSearch);
+  // if (multiSearch.prop('checked') && $('.colors-list').children().prop('checked') == false) {
+  //   console.log('no color checked');} else
   if (multiSearch.prop('checked')) {
-    console.log('some stuff');
+    for(var i in resultObj.cards) {
+        var card = resultObj.cards[i];
+      }
   } else for(var i in resultObj.cards) {
       var card = resultObj.cards[i];
       if (card.name.toUpperCase().includes(cardName.prop('value').toUpperCase()) && cardName.prop('value') !== ('')) {
@@ -36,7 +39,7 @@ $('#search-submit').on('click', function(event) {
       } else if (greenSearch.prop('checked') && (card.colors.indexOf('Green') !== -1) && (resultsArr.indexOf(card) == -1)) {
           resultsArr.push(card);
       } else if (mythicSearch.prop('checked') && (card.rarity.indexOf('Mythic Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
-        resultsArr.push(card);
+          resultsArr.push(card);
       } else if (rareSearch.prop('checked') && (card.rarity.indexOf('Rare') !== -1) && (resultsArr.indexOf(card) == -1)) {
           resultsArr.push(card);
       } else if (uncommonSearch.prop('checked') && (card.rarity.indexOf('Uncommon') !== -1) && (resultsArr.indexOf(card) == -1)) {
