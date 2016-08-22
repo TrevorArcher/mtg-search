@@ -16,12 +16,12 @@ var rareSearch = $('.rare');
 var uncommonSearch = $('.uncommon');
 var commonSearch = $('.common');
 
-$('#search-submit').on('click', function(event) {
-  event.preventDefault();
-  for (var i = 0 ; i < jsonArr.length ; i++) {
-    cardPull(jsonArr[i]);
-  }
-});
+// $('#search-submit').on('click', function(event) {
+  // event.preventDefault();
+  // for (var i = 0 ; i < jsonArr.length ; i++) {
+    // cardPull(jsonArr);
+  // }
+// });
 
   // if (multiSearch.prop('checked')) {
   //   for(var i in resultObj.cards) {
@@ -29,12 +29,11 @@ $('#search-submit').on('click', function(event) {
   //     }
   // } else
 
-function cardPull(eachSet) {
-  console.log(eachSet);
-  console.log(eachSet.cards);
-  console.log(eachSet.cards[0].colors);
-  for(var i = 0 ; i < eachSet.cards.length ; i++) {
-    var card = eachSet.cards[i];
+$('#search-submit').on('click', function(event) {
+  event.preventDefault();
+  clearResults();
+  for(var i = 0 ; i < jsonArr.cards.length ; i++) {
+    var card = jsonArr.cards[i];
     if (card.name.toUpperCase().includes(cardName.prop('value').toUpperCase()) && cardName.prop('value') !== ('')) {
       resultsArr.push(card);
     } else if (whiteSearch.prop('checked') && (card.colors.indexOf('White') !== -1) && (resultsArr.indexOf(card) == -1)) {
@@ -58,7 +57,7 @@ function cardPull(eachSet) {
     }
   }
   postResult(resultsArr);
-}
+});
 
 function postResult(cardPost) {
   // clearResults();
@@ -91,12 +90,10 @@ function clearResults() {
 
 $.ajax({
   type: 'GET',
-  url: 'json/AllSets-x.json',
+  url: 'json/ARB-x.json',
   dataType: 'json',
   success: function(result) {
-    jsonArr = Object.keys(result).map(function (key) {
-      return result[key];
-    });
+    jsonArr = result;
     console.log(jsonArr);
   }
 });
